@@ -72,28 +72,28 @@
 ## 💼 Day 7 LinkedIn Post Copy
 
 ```markdown
-🚀 Day 7 of #ProjectGetHired | ChronoVault: Personal Digital Time Capsule with Dual-Key Unlocking & Zero-Knowledge Security
+Day 7 of #ProjectGetHired | ChronoVault: Personal Digital Time Capsule with Dual-Key Unlocking & Zero-Knowledge Security
 
-I wanted some photos and memories to be completely hidden for a certain time — and what better way to do that than a good old digital time capsule? 🔒⏳
+I wanted some photos and memories to be completely hidden for a certain time — and what better way to do that than a good old digital time capsule?
 
 Today for Day 7, I built ChronoVault — an atmospheric personal time capsule platform that brings the sentiment of sealing physical letters & memories to the web, backed by a strict time-gating security architecture.
 
-✨ Highlights & Engineering Decisions:
-1. 🔒 Dual Unlocking Architecture:
+Key Highlights & Engineering Decisions:
+1. Dual Unlocking Architecture:
    - Normal Scheduled Unlock: Automatically unlocks when the calendar date arrives (e.g. 1,095 days remaining).
-   - Early Password Unlock: Protected by server-side bcrypt hashed keys, a 2-step emotional confirmation modal ("These memories were meant for your future self..."), rate limiting, and an animated cinematic reveal screen ("You couldn't wait, huh? 👀").
-2. 🛡️ Zero-Knowledge Backend:
+   - Early Password Unlock: Protected by server-side bcrypt hashed keys, a 2-step emotional confirmation modal ("These memories were meant for your future self..."), rate limiting, and an animated cinematic reveal screen ("You couldn't wait, huh?").
+2. Zero-Knowledge Backend:
    - While sealed, confidential letters and photo paths are never exposed over the API.
    - Media assets are served through a time-checked binary authorization gateway.
-3. 📜 Nostalgic UX:
-   - Real-time live countdowns, dark cosmic vault aesthetic, vintage wax-sealed letter typography, and generative ambient audio synthesis.
+3. Nostalgic UX:
+   - Real-time live countdowns, dark cosmic vault aesthetic, vintage wax-sealed letter typography, mobile-first design, and generative ambient audio synthesis.
 
-💻 Tech Stack: React, Tailwind CSS, Express, Node.js, Bcrypt, Lucide Icons, Canvas-Confetti, Vercel
+Tech Stack: React, Tailwind CSS, Express, Node.js, Bcrypt, Lucide Icons, Canvas-Confetti, Vercel
 
 🌐 Live Demo: https://chronovault-app.vercel.app
 📁 GitHub: https://github.com/aamilhaq/chronovault-time-capsule
 
-Feedback and thoughts are welcome! 🔥
+Feedback and thoughts are welcome!
 #WebDevelopment #ReactJS #FullStack #NodeJS #Security #UIUX #Day7
 ```
 
