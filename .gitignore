@@ -6,3 +6,5 @@ dist
 .vercel
 uploads/*
 !uploads/.gitkeep
+
+.vercel

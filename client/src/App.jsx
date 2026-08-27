@@ -6,7 +6,7 @@ import EarlyUnlockModal from './components/EarlyUnlockModal';
 import CinematicUnlockReveal from './components/CinematicUnlockReveal';
 import CreateCapsuleModal from './components/CreateCapsuleModal';
 import { fetchAllCapsules, fetchCapsuleById, unlockCapsuleEarly } from './services/api';
-import { Loader2, Sparkles, Shield, Lock, Zap, Clock, Info } from 'lucide-react';
+import { Loader2, Shield, Info, Sparkles } from 'lucide-react';
 
 export default function App() {
   const [capsules, setCapsules] = useState([]);
@@ -50,6 +50,7 @@ export default function App() {
   }, []);
 
   const handleSelectCapsule = async (id) => {
+    if (id === selectedCapsuleId && currentCapsule) return;
     setSelectedCapsuleId(id);
     setLoading(true);
     try {
@@ -80,7 +81,7 @@ export default function App() {
     setCurrentCapsule(newCapsule);
   };
 
-  // Ambient Nostalgia Audio Synthesizer (Soft harmonic celestial chords)
+  // Ambient Nostalgia Audio Synthesizer
   const toggleAmbientAudio = () => {
     if (isAudioPlaying) {
       if (oscillatorGainRef.current) {
@@ -99,11 +100,10 @@ export default function App() {
 
         const ctx = audioCtxRef.current;
         const masterGain = ctx.createGain();
-        masterGain.gain.setValueAtTime(0.04, ctx.currentTime);
+        masterGain.gain.setValueAtTime(0.035, ctx.currentTime);
         masterGain.connect(ctx.destination);
         oscillatorGainRef.current = masterGain;
 
-        // Frequencies for a warm celestial suspended chord (F# - C# - A# - G#)
         const freqs = [185.00, 277.18, 370.00, 466.16];
         freqs.forEach((freq, idx) => {
           const osc = ctx.createOscillator();
@@ -111,11 +111,10 @@ export default function App() {
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-          // Subtle LFO modulation for cosmic drift
           const lfo = ctx.createOscillator();
           const lfoGain = ctx.createGain();
           lfo.frequency.value = 0.15 + (idx * 0.05);
-          lfoGain.gain.value = 3;
+          lfoGain.gain.value = 2.5;
           lfo.connect(osc.frequency);
           lfo.start();
 
@@ -137,7 +136,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="min-h-screen w-full bg-[#07090e] text-slate-100 flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
       
       {/* Top Navigation */}
       <Navbar
@@ -149,29 +148,32 @@ export default function App() {
         onToggleAudio={toggleAmbientAudio}
       />
 
-      {/* Demo State Switcher Bar */}
-      <div className="bg-vault-900/60 border-b border-slate-800/80 py-2 px-4">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
-          <div className="flex items-center gap-2 text-slate-400">
-            <Info className="w-3.5 h-3.5 text-amber-400" />
-            <span className="font-semibold text-slate-300">Quick Test Vaults:</span>
+      {/* Demo State Switcher Bar — Horizontal scrollable on mobile */}
+      <div className="w-full bg-vault-900/70 border-b border-slate-800/80 py-2 px-3 sm:px-6 sticky top-14 sm:top-20 z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto flex items-center gap-2 sm:gap-4 overflow-x-auto no-scrollbar py-0.5">
+          <div className="flex items-center gap-1.5 text-slate-400 shrink-0 text-xs">
+            <Info className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span className="font-semibold text-slate-300 hidden sm:inline">Test Vaults:</span>
+            <span className="font-semibold text-slate-300 sm:hidden">Vaults:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {capsules.map(cap => (
               <button
                 key={cap.id}
                 onClick={() => handleSelectCapsule(cap.id)}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-mono transition-all flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                   selectedCapsuleId === cap.id
-                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
-                    : 'bg-vault-850 hover:bg-vault-800 text-slate-400 border border-slate-700/50'
+                    ? 'bg-amber-500/25 text-amber-300 border border-amber-500/50 shadow-sm font-bold'
+                    : 'bg-vault-850 hover:bg-vault-800 text-slate-400 border border-slate-700/60'
                 }`}
               >
                 <span>
-                  {cap.status === 'SEALED' ? '🔒 SEALED (1,095d)' : cap.status === 'UNLOCKED_EARLY' ? '⚡ UNLOCKED EARLY' : '🌟 UNLOCKED'}
+                  {cap.status === 'SEALED' ? '🔒 1,095d' : cap.status === 'UNLOCKED_EARLY' ? '⚡ Early' : '🌟 Unlocked'}
                 </span>
-                <span className="font-sans font-medium text-slate-300 max-w-[100px] truncate">{cap.title}</span>
+                <span className="font-sans font-medium text-slate-200 truncate max-w-[120px] sm:max-w-none">
+                  {cap.title}
+                </span>
               </button>
             ))}
           </div>
@@ -179,18 +181,18 @@ export default function App() {
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col justify-center items-center py-6 px-4">
+      <main className="flex-1 w-full max-w-6xl mx-auto flex flex-col justify-center items-center py-4 sm:py-8 px-3 sm:px-6">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20 space-y-4">
-            <Loader2 className="w-10 h-10 text-amber-400 animate-spin" />
+            <Loader2 className="w-9 h-9 text-amber-400 animate-spin" />
             <p className="font-mono text-xs text-slate-400 tracking-wider uppercase">
               Accessing Temporal Vault...
             </p>
           </div>
         ) : error ? (
-          <div className="p-8 rounded-3xl bg-vault-900 border border-rose-500/30 text-center max-w-md">
-            <Shield className="w-12 h-12 text-rose-400 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-slate-100">Vault Access Error</h3>
+          <div className="p-6 sm:p-8 rounded-3xl bg-vault-900 border border-rose-500/30 text-center max-w-md my-8">
+            <Shield className="w-10 h-10 text-rose-400 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-slate-100">Vault Access Error</h3>
             <p className="text-xs text-slate-400 mt-2">{error}</p>
             <button
               onClick={() => loadCapsules()}
@@ -216,19 +218,19 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-slate-800/80 bg-vault-950 py-6 text-center text-xs text-slate-500">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <footer className="w-full border-t border-slate-800/80 bg-vault-950/90 py-5 text-center text-xs text-slate-500">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2.5">
           <div className="flex items-center gap-2">
-            <span className="font-serif font-bold text-slate-400">ChronoVault</span>
+            <span className="font-serif font-bold text-slate-300">ChronoVault</span>
             <span>• Day 7 #ProjectGetHired</span>
           </div>
-          <p className="text-[11px]">
-            Zero-Knowledge sealed storage • Server-verified password encryption • Time-gated media streaming
+          <p className="text-[11px] text-slate-500 text-center sm:text-right">
+            Zero-Knowledge sealed storage • Server bcrypt encryption • Time-gated media
           </p>
         </div>
       </footer>
 
-      {/* Early Unlock Modal (2-Step emotional confirmation + bcrypt verification) */}
+      {/* Early Unlock Modal */}
       <EarlyUnlockModal
         capsule={currentCapsule}
         isOpen={isEarlyUnlockModalOpen}

@@ -3,21 +3,38 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   body {
-    background: radial-gradient(circle at 50% 20%, #121829 0%, #080b12 55%, #040509 100%);
+    background: radial-gradient(circle at 50% 15%, #141b2e 0%, #090c15 50%, #04060a 100%);
     background-attachment: fixed;
     color: #e2e8f0;
     min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
-/* Custom Scrollbar */
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom Scrollbar for desktop */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #07090e;
 }
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
@@ -29,33 +46,27 @@
 
 /* Vintage Paper effect for Future Self Letter */
 .vintage-letter {
-  background-color: #fcf9ee;
+  background-color: #fdfbf3;
   background-image: 
-    linear-gradient(#f0e6d2 1px, transparent 1px),
-    radial-gradient(#eedcb5 10%, transparent 11%);
-  background-size: 100% 28px, 12px 12px;
+    linear-gradient(#f1e7d0 1px, transparent 1px),
+    radial-gradient(#eeddb6 12%, transparent 13%);
+  background-size: 100% 26px, 10px 10px;
   box-shadow: 
-    0 10px 30px -5px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(160, 130, 80, 0.2),
-    inset 0 0 60px rgba(180, 140, 90, 0.15);
+    0 10px 30px -5px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(160, 130, 80, 0.25),
+    inset 0 0 50px rgba(180, 140, 90, 0.15);
 }
 
 /* Vault Ring glow */
 .vault-glow {
-  box-shadow: 0 0 50px -10px rgba(229, 184, 105, 0.25), inset 0 0 30px -10px rgba(229, 184, 105, 0.15);
+  box-shadow: 0 0 40px -5px rgba(245, 158, 11, 0.25), inset 0 0 25px -5px rgba(245, 158, 11, 0.15);
 }
 
-.vault-glow-active {
-  box-shadow: 0 0 80px 0px rgba(245, 158, 11, 0.35), inset 0 0 40px 0px rgba(245, 158, 11, 0.2);
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Shimmer animation utility */
-.bg-shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 200% 100%;
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
 }
