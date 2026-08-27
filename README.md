@@ -1,34 +1,42 @@
-# 🔒 ChronoVault — Personal Digital Time Capsule (Day 7)
+<div align="center">
 
-> **Day 7 of #ProjectGetHired 🚀 | Personal Digital Time Capsule with Dual Unlocking System (Scheduled auto-unlock & server-verified hashed early unlock), 2-step emotional confirmation, cinematic reveal screen, and zero-knowledge time-gated media gallery built with React, Node.js, Express & Tailwind CSS**
+# 🔒 ChronoVault — Personal Digital Time Capsule
 
----
+**Day 7 of #ProjectGetHired 🚀**
 
-## ✨ Overview
+*A personal, atmospheric digital time capsule platform where memories are sealed until the future arrives — featuring a dual unlocking system with scheduled auto-unlock and server-hashed early unlock.*
 
-**ChronoVault** is a personal digital time capsule platform designed to preserve letters, memories, and photos for the future with strict time-gating security and a dual unlocking architecture:
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://time-capsule-red-sigma.vercel.app)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aamilhaq/chronovault-time-capsule)
+[![License](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge)](LICENSE)
 
-1. **Normal Unlock (Time-Gated)**:
-   - The capsule automatically unlocks when the scheduled target date arrives (`Date.now() >= unlockDate`).
-   - While sealed, photos and letters are strictly inaccessible.
-2. **Early Unlock (Secret Password)**:
-   - Created during capsule sealing with clear explanation: *“You can choose to wait until your unlock date — or use your secret password to open the capsule early.”*
-   - Intentionally less prominent secondary option: *“Can't wait? Unlock early →”*
-   - 2-Step emotional confirmation modal (*“Are you sure? These memories were meant for your future self...”*)
-   - Server-side salted & hashed password verification (`bcryptjs`) with rate limiting and lockout protection.
-   - Meaningful cinematic reveal screen:
-     - **“You couldn't wait, huh? 👀”**
-     - **“Your memories are finally yours.”**
-   - Immediate status transition to `UNLOCKED EARLY` with badge: **“Unlocked early on August 27, 2026”**.
+[**🌐 Experience Live Demo**](https://time-capsule-red-sigma.vercel.app) • [**📖 Architecture & Docs**](#-architecture--security) • [**💼 LinkedIn Post Copy**](#-day-7-linkedin-post-copy)
+
+</div>
 
 ---
 
-## 🛡️ Security Architecture
+## 🌟 Key Unlocking Systems
 
-- **Zero Client-Side Leaks**: Sealed capsules return only sanitized metadata (`title`, `creatorName`, `createdAt`, `unlockDate`, `status`, `photoCount`). The private letter and photo paths are `null` / empty array.
-- **Server-Side Verification**: Passwords are never compared or stored on the client. `bcryptjs` performs salted one-way hashing on the backend.
-- **Time-Gated Photo Streaming**: Direct static file access is disabled. All images are streamed through `/api/capsules/:id/photos/:photoId`, which strictly checks authorization before streaming binary data.
-- **Rate-Limiting & Lockout**: Failed attempts are tracked per capsule/IP with 5-attempt limits and cooldown periods.
+### 1. 🔒 Normal Scheduled Unlock (`UNLOCKED`)
+- Automatically becomes accessible when the scheduled unlock date arrives (`Date.now() >= unlockDate`).
+- Example: **🔒 SEALED • Unlocks August 27, 2029 • 1,095 days remaining**.
+- While sealed, photos, confidential letters, and passwords are zero-knowledge protected.
+
+### 2. ⚡ Early Unlock with Secret Password (`UNLOCKED EARLY`)
+- **Capsule Creation**: The creator establishes a secret password with the principle:
+  > *“You can choose to wait until your unlock date — or use your secret password to open the capsule early.”*
+- **Subtle UX**: A less prominent secondary trigger beneath the countdown encourages patience:
+  > *Can't wait?*
+  > **`Unlock early →`**
+- **2-Step Emotional Confirmation Modal**:
+  - **Step 1**: *“Are you sure? These memories were meant for your future self. Your capsule isn't ready yet. If you continue, you'll permanently unlock it early.”*
+  - **Step 2**: *“Enter your early-unlock password”* with masked input `[ ••••••••• ]` and password hints.
+- **Meaningful Cinematic Reveal**:
+  - ✨ **“You couldn't wait, huh? 👀”**
+  - ✨ **“Your memories are finally yours.”**
+- **Permanent Commemorative Status**:
+  - Badged as **`UNLOCKED EARLY`** with *"Unlocked early on August 27, 2026"*.
 
 ---
 
@@ -42,37 +50,73 @@
 
 ---
 
-## 🚀 Quick Start
+## 🛡️ Architecture & Security
 
-### 1. Start Backend Server
-```bash
-cd server
-npm start
-# Server runs on http://localhost:5000
-```
+- **Zero Client-Side Leaks**: Sealed capsules return `message: null` and empty photo array over the REST API.
+- **Server-Side Salted Hashes**: Passwords are never stored in plaintext or verified on the client. `bcryptjs` performs salted one-way hashing on the backend.
+- **Time-Gated Image Streamer**: Static `/uploads` is disabled. All images are streamed through `/api/capsules/:id/photos/:photoId`, which strictly checks authorization before streaming binary data.
+- **Rate-Limiting & Lockout**: Failed attempts are tracked per capsule/IP with 5-attempt limits and temporary 15-minute lockout cooldowns.
 
-### 2. Start Frontend Client
-```bash
-cd client
-npm run dev
-# Frontend runs on http://localhost:5173
-```
+---
 
-### 3. Run Security Test Suite
-```bash
-cd server
-node test-api.js
+## 🧪 Pre-Seeded Test Vaults
+
+| Vault | Status | Password & Testing Notes |
+| :--- | :--- | :--- |
+| **`College Days`** | 🔒 **`SEALED`** | **1,095 days remaining**. Click *“Unlock early →”* and enter password: `almamater2026` |
+| **`Kyoto Autumn Journey`** | 🌟 **`UNLOCKED`** | Scheduled unlock date was in October 2024. Shows the completed waiting state. |
+| **`Secret Notes to 25`** | ⚡ **`UNLOCKED EARLY`** | Shows the early-unlocked commemoration and vintage wax-sealed letter. |
+
+---
+
+## 💼 Day 7 LinkedIn Post Copy
+
+```markdown
+🚀 Day 7 of #ProjectGetHired | ChronoVault: Personal Digital Time Capsule with Dual-Key Unlocking & Zero-Knowledge Security
+
+What happens to digital memories when they are meant for your future self?
+
+Today for Day 7, I built ChronoVault — an atmospheric personal time capsule platform that brings the sentiment of sealing physical letters to the web, backed by strict time-gating architecture.
+
+✨ Highlights & Engineering Decisions:
+1. 🔒 Dual Unlocking Architecture:
+   - Normal Scheduled Unlock: Automatically unlocks when the calendar date arrives.
+   - Early Password Unlock: Protected by server-side bcrypt hashed keys, a 2-step emotional confirmation modal ("These memories were meant for your future self..."), rate limiting, and an animated cinematic reveal screen ("You couldn't wait, huh? 👀").
+2. 🛡️ Zero-Knowledge Backend:
+   - While sealed, confidential letters and photo paths are never exposed over the API.
+   - Media assets are served through a time-checked binary authorization gateway.
+3. 📜 Nostalgic UX:
+   - Real-time countdowns, dark cosmic vault aesthetic, vintage wax-sealed letter typography, and generative ambient audio synthesis.
+
+💻 Tech Stack: React, Tailwind CSS, Express, Node.js, Bcrypt, Lucide, Canvas-Confetti, Vercel
+
+🌐 Live Demo: https://time-capsule-red-sigma.vercel.app
+📁 GitHub: https://github.com/aamilhaq/chronovault-time-capsule
+
+Feedback and thoughts are welcome! 🔥
+#WebDevelopment #ReactJS #FullStack #NodeJS #Security #UIUX #Day7
 ```
 
 ---
 
-## 📂 Pre-Seeded Demo Capsules
+## 🛠️ Local Development
 
-1. **`College Days` (SEALED)**
-   - **Target**: August 27, 2029 (1,095 days remaining)
-   - **Early Unlock Password**: `almamater2026`
-   - **Hint**: *Our favorite coffee shop near the engineering quad*
-2. **`Kyoto Autumn Journey` (UNLOCKED)**
-   - **Target**: October 15, 2024 (Past scheduled date, auto-unlocked)
-3. **`Secret Notes to My 25-Year-Old Self` (UNLOCKED EARLY)**
-   - **Status**: Unlocked early on August 27, 2026.
+```bash
+# Clone repository
+git clone https://github.com/aamilhaq/chronovault-time-capsule.git
+cd chronovault-time-capsule
+
+# Run Automated Security Tests
+cd server && npm test
+
+# Start Server
+node server/index.js
+
+# Start Client
+cd ../client && npm run dev
+```
+
+---
+
+## 📄 License
+MIT License © 2026 Aamil Haq
