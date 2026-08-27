@@ -1,0 +1,14 @@
+{
+  "name": "chronovault-time-capsule",
+  "version": "1.0.0",
+  "description": "ChronoVault — Personal Digital Time Capsule with Dual Unlocking System (Day 7 #ProjectGetHired)",
+  "scripts": {
+    "server": "node server/index.js",
+    "client": "npm --prefix client run dev",
+    "test": "node server/test-api.js",
+    "build": "npm --prefix client run build"
+  },
+  "keywords": ["time-capsule", "react", "express", "security", "dual-unlock"],
+  "author": "Antigravity",
+  "license": "MIT"
+}
