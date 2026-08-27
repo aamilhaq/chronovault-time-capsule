@@ -6,11 +6,11 @@
 
 *A personal, atmospheric digital time capsule platform where memories are sealed until the future arrives — featuring a dual unlocking system with scheduled auto-unlock and server-hashed early unlock.*
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://time-capsule-red-sigma.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://chronovault-app.vercel.app)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aamilhaq/chronovault-time-capsule)
 [![License](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge)](LICENSE)
 
-[**🌐 Experience Live Demo**](https://time-capsule-red-sigma.vercel.app) • [**📖 Architecture & Docs**](#-architecture--security) • [**💼 LinkedIn Post Copy**](#-day-7-linkedin-post-copy)
+[**🌐 Experience Live Demo**](https://chronovault-app.vercel.app) • [**📖 Architecture & Docs**](#-architecture--security) • [**💼 LinkedIn Post Copy**](#-day-7-linkedin-post-copy)
 
 </div>
 
@@ -90,7 +90,7 @@ Today for Day 7, I built ChronoVault — an atmospheric personal time capsule pl
 
 💻 Tech Stack: React, Tailwind CSS, Express, Node.js, Bcrypt, Lucide Icons, Canvas-Confetti, Vercel
 
-🌐 Live Demo: https://time-capsule-red-sigma.vercel.app
+🌐 Live Demo: https://chronovault-app.vercel.app
 📁 GitHub: https://github.com/aamilhaq/chronovault-time-capsule
 
 Feedback and thoughts are welcome! 🔥
