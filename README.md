@@ -91,7 +91,7 @@ Key Highlights & Engineering Decisions:
 Tech Stack: React, Tailwind CSS, Express, Node.js, Bcrypt, Lucide Icons, Canvas-Confetti, Vercel
 
 🌐 Live Demo: https://chronovault-app.vercel.app
-📁 GitHub: https://github.com/aamilhaq/chronovault-time-capsule
+💻 GitHub: https://github.com/aamilhaq/chronovault-time-capsule
 
 Feedback and thoughts are welcome!
 #WebDevelopment #ReactJS #FullStack #NodeJS #Security #UIUX #Day7
